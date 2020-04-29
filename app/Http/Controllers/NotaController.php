@@ -42,7 +42,14 @@ class NotaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nota = new Nota();
+        $nota->nombre = $request->nombre;
+        $nota->descripcion = $request->descripcion;
+        $nota->usuario = auth()->user()->email;
+        $nota->save();
+        
+        return redirect('/notas');
+        // return back()->with('mensaje', 'Nota Agregada!');
     }
 
     /**
